@@ -12,18 +12,77 @@
     <inertia ixx="0.717739" iyy="0.500811" izz="1.175143" ixy="-0.003329" iyz="-0.001513" ixz="-0.000303"/>
   </inertial>
   <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 -1.5708"/> 
     <geometry>
       <mesh filename="file://$(find medical_delivery_robot)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 -1.5708"/>
     <geometry>
       <mesh filename="file://$(find medical_delivery_robot)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="-0.03611520840332852 -7.184577711271973e-06 3.922141720499872e-07" rpy="0 0 0"/>
+    <mass value="7.769180436532471"/>
+    <inertia ixx="0.022657" iyy="0.013179" izz="0.013179" ixy="3e-06" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.17 0.003494 -0.059881" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find medical_delivery_robot)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.17 0.003494 -0.059881" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find medical_delivery_robot)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="0.03611520840332594 7.471004138964992e-06 3.9221417211243725e-07" rpy="0 0 0"/>
+    <mass value="7.769180436532471"/>
+    <inertia ixx="0.022657" iyy="0.013179" izz="0.013179" ixy="3e-06" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.168 0.003494 -0.059881" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find medical_delivery_robot)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.168 0.003494 -0.059881" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find medical_delivery_robot)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="imu_link">
+  <visual>
+    <geometry>
+      <box size="0.02 0.02 0.01"/>
+    </geometry>
+  </visual>
+  <collision>
+    <geometry>
+      <box size="0.02 0.02 0.01"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/>
+  </inertial>
 </link>
 
 <link name="caster_wheel_1">
@@ -383,48 +442,6 @@
   </collision>
 </link>
 
-<link name="left_wheel_1">
-  <inertial>
-    <origin xyz="-0.03611520840332852 -7.184577711271973e-06 3.922141720499872e-07" rpy="0 0 0"/>
-    <mass value="7.769180436532471"/>
-    <inertia ixx="0.022657" iyy="0.013179" izz="0.013179" ixy="3e-06" iyz="0.0" ixz="-0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0.17 0.003494 -0.059881" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find medical_delivery_robot)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0.17 0.003494 -0.059881" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find medical_delivery_robot)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="right_wheel_1">
-  <inertial>
-    <origin xyz="0.03611520840332594 7.471004138964992e-06 3.9221417211243725e-07" rpy="0 0 0"/>
-    <mass value="7.769180436532471"/>
-    <inertia ixx="0.022657" iyy="0.013179" izz="0.013179" ixy="3e-06" iyz="-0.0" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="-0.168 0.003494 -0.059881" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find medical_delivery_robot)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="-0.168 0.003494 -0.059881" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find medical_delivery_robot)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
 <link name="front_cover_body_1">
   <inertial>
     <origin xyz="0.037898571407738495 -0.0516884782609337 -0.05842808104527521" rpy="0 0 0"/>
@@ -465,23 +482,6 @@
       <mesh filename="file://$(find medical_delivery_robot)/meshes/top_cover_body_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
-</link>
-
-<link name="imu_link">
-  <visual>
-    <geometry>
-      <box size="0.02 0.02 0.01"/>
-    </geometry>
-  </visual>
-  <collision>
-    <geometry>
-      <box size="0.02 0.02 0.01"/>
-    </geometry>
-  </collision>
-  <inertial>
-    <mass value="0.01"/>
-    <inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/>
-  </inertial>
 </link>
 
 <link name="lidar_camera_1">
@@ -675,6 +675,26 @@
   </collision>
 </link>
 
+<joint name="left_wheel_joint" type="continuous">
+  <origin xyz="-0.003494 0.17 0.059881" rpy="0 0 -1.570796"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="1.0 -0.0 0.0"/>
+</joint>
+
+<joint name="right_wheel_joint" type="continuous">
+  <origin xyz="-0.003494 -0.17 0.059881" rpy="0 0 -1.570796"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="1.0 -0.0 0.0"/>
+</joint>
+
+<joint name="imu_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+  <origin xyz="0 0 0.1" rpy="0 0 0"/> 
+</joint>
+
 <joint name="Revolute 5" type="continuous">
   <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
   <parent link="wheel_hex_1"/>
@@ -683,7 +703,7 @@
 </joint>
 
 <joint name="Revolute 7" type="continuous">
-  <origin xyz="0.179231 -0.20589 0.050881" rpy="0 0 0"/>
+  <origin xyz="0.2025 -0.17920 0.050881" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="caster_wheel_plate_1"/>
   <axis xyz="0.0 0.0 -1.0"/>
@@ -721,7 +741,7 @@
 </joint>
 
 <joint name="Revolute 21" type="continuous">
-  <origin xyz="0.181711 0.199128 0.050881" rpy="0 0 0"/>
+  <origin xyz="0.2025 0.1770 0.050881" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="caster_wheel_plate_2_1"/>
   <axis xyz="0.0 0.0 -1.0"/>
@@ -747,7 +767,7 @@
 </joint>
 
 <joint name="Revolute 25" type="continuous">
-  <origin xyz="-0.173289 0.199128 0.050881" rpy="0 0 0"/>
+  <origin xyz="-0.205 0.17750 0.050881" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="caster_wheel_plate_3_1"/>
   <axis xyz="-0.0 -0.0 1.0"/>
@@ -773,30 +793,16 @@
 </joint>
 
 <joint name="Revolute 29" type="continuous">
-  <origin xyz="-0.180769 -0.20589 0.050881" rpy="0 0 0"/>
+  <origin xyz="-0.205 -0.17750 0.050881" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="caster_wheel_plate_4_1"/>
   <axis xyz="0.0 0.0 -1.0"/>
 </joint>
 
 <joint name="Rigid 30" type="fixed">
-  <origin xyz="0.239041 -0.18101 0.00666" rpy="0 0 0"/>
+  <origin xyz="-0.18101 -0.239041 0.00666" rpy="0 0 -1.570796"/>
   <parent link="base_link"/>
   <child link="middle_cover_body_1"/>
-</joint>
-
-<joint name="left_wheel_joint" type="continuous">
-  <origin xyz="-0.17 -0.003494 0.059881" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="left_wheel_1"/>
-  <axis xyz="1.0 -0.0 0.0"/>
-</joint>
-
-<joint name="right_wheel_joint" type="continuous">
-  <origin xyz="0.168 -0.003494 0.059881" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="right_wheel_1"/>
-  <axis xyz="1.0 -0.0 0.0"/>
 </joint>
 
 <joint name="Rigid 33" type="fixed">
@@ -827,12 +833,6 @@
   <parent link="camera_base_1"/> 
   <child link="camera_depth_optical_frame"/>
   <origin xyz="0 0 0" rpy="-1.570796 0 -1.570796"/> 
-</joint>
-
-<joint name="imu_joint" type="fixed">
-  <parent link="base_link"/>
-  <child link="imu_link"/>
-  <origin xyz="0 0 0.1" rpy="0 0 0"/> 
 </joint>
 
 <joint name="Rigid 37" type="fixed">
