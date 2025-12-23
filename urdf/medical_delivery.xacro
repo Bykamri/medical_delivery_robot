@@ -4,6 +4,7 @@
 <xacro:include filename="$(find medical_delivery_robot)/urdf/materials.xacro" />
 <xacro:include filename="$(find medical_delivery_robot)/urdf/medical_delivery.trans" />
 <xacro:include filename="$(find medical_delivery_robot)/urdf/medical_delivery.gazebo" />
+
 <link name="base_link">
   <inertial>
     <origin xyz="-0.0015580269574476447 0.00017761493072022462 0.026328517143392884" rpy="0 0 0"/>
@@ -466,6 +467,23 @@
   </collision>
 </link>
 
+<link name="imu_link">
+  <visual>
+    <geometry>
+      <box size="0.02 0.02 0.01"/>
+    </geometry>
+  </visual>
+  <collision>
+    <geometry>
+      <box size="0.02 0.02 0.01"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/>
+  </inertial>
+</link>
+
 <link name="lidar_camera_1">
   <inertial>
     <origin xyz="1.4596318044490125e-05 -0.0005648293751858713 0.009299047471123395" rpy="0 0 0"/>
@@ -487,6 +505,8 @@
   </collision>
 </link>
 
+<link name="camera_depth_optical_frame"/>
+
 <link name="camera_base_1">
   <inertial>
     <origin xyz="6.203018544851879e-05 0.001895520517469551 0.012478001926063825" rpy="0 0 0"/>
@@ -494,7 +514,7 @@
     <inertia ixx="3.2e-05" iyy="0.000227" izz="0.000229" ixy="2e-06" iyz="0.0" ixz="-0.0"/>
   </inertial>
   <visual>
-    <origin xyz="0.0 -0.30199 -0.238833" rpy="0 0 0"/>
+    <origin xyz="-0.30199 0 -0.238833" rpy="0 0 -1.570796"/>
     <geometry>
       <mesh filename="file://$(find medical_delivery_robot)/meshes/camera_base_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
@@ -798,9 +818,21 @@
 </joint>
 
 <joint name="Rigid 36" type="fixed">
-  <origin xyz="-0.240313 0.362521 0.033" rpy="0 0 0"/>
+  <origin xyz="-0.240313 0.362521 0.033" rpy="0 0 1.570796"/>
   <parent link="top_cover_body_1"/>
   <child link="camera_base_1"/>
+</joint>
+
+<joint name="camera_depth_optical_joint" type="fixed">
+  <parent link="camera_base_1"/> 
+  <child link="camera_depth_optical_frame"/>
+  <origin xyz="0 0 0" rpy="-1.570796 0 -1.570796"/> 
+</joint>
+
+<joint name="imu_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+  <origin xyz="0 0 0.1" rpy="0 0 0"/> 
 </joint>
 
 <joint name="Rigid 37" type="fixed">

@@ -16,6 +16,8 @@ setup(
         (os.path.join('share', package_name, 'urdf'), glob('urdf/*')),
         (os.path.join('share', package_name, 'meshes'), glob('meshes/*')),
         (os.path.join('share', package_name, 'config'), glob('config/*')),
+        (os.path.join('share', package_name, 'worlds'), glob('./worlds/*')),
+        (os.path.join('share', package_name,'models/'), glob('./worlds/*')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -30,6 +32,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'robot_move = medical_delivery_robot.robot_move:main',
         ],
     },
 )
