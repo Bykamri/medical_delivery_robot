@@ -5,6 +5,22 @@
 <xacro:include filename="$(find medical_delivery_robot)/urdf/medical_delivery.trans" />
 <xacro:include filename="$(find medical_delivery_robot)/urdf/medical_delivery.gazebo" />
 
+<!-- Base footprint for navigation and SLAM -->
+<link name="base_footprint">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+</link>
+
+<joint name="base_footprint_joint" type="fixed">
+  <origin xyz="0 0 0.059881" rpy="0 0 0"/>
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+</joint>
+
 <link name="base_link">
   <inertial>
     <origin xyz="-0.0015580269574476447 0.00017761493072022462 0.026328517143392884" rpy="0 0 0"/>

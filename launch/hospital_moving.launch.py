@@ -16,7 +16,7 @@ def generate_launch_description():
     robot_description_config = xacro.process_file(xacro_file)
     robot_urdf = robot_description_config.toxml()
 
-    world_file = os.path.join(share_dir, 'worlds', 'hospital_static_human.world')
+    world_file = os.path.join(share_dir, 'worlds', 'hospital_moving_actors.world')
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
@@ -86,11 +86,22 @@ def generate_launch_description():
             }]
     )
 
+    robot_move_enhanced_node = Node(
+        package='medical_delivery_robot',
+        executable='robot_move_enhanced',
+        name='robot_move_enhanced_node',
+        output='screen',
+        parameters=[{
+            'use_sim_time': True
+        }]
+    )
+
     return LaunchDescription([
         robot_state_publisher_node,
         joint_state_publisher_node,
         gazebo_server,
         gazebo_client,
         urdf_spawn_node,
-        # robot_move_node
+        # robot_move_node,
+        robot_move_enhanced_node
     ])

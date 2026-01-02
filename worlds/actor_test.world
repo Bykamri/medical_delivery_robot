@@ -1,0 +1,497 @@
+<?xml version="1.0"?>
+<sdf version='1.7'>
+  <world name='actor_test_world'>
+    <light name='sun' type='directional'>
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <model name='box_obstacle_1'>
+      <pose>4 0 0.5 0 0 0</pose>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.1 0.1 1</ambient>
+            <diffuse>0.7 0.2 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name='box_obstacle_2'>
+      <pose>-3 5 0.5 0 0 0</pose>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1.5 1.5 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1.5 1.5 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.3 0.1 1</ambient>
+            <diffuse>0.2 0.7 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name='box_obstacle_3'>
+      <pose>2 -4 0.5 0 0 0</pose>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.3 1</ambient>
+            <diffuse>0.2 0.2 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name='box_obstacle_4'>
+      <pose>-5 -3 0.4 0 0 0</pose>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.8 0.8 0.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.8 0.8 0.8</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.1 1</ambient>
+            <diffuse>0.7 0.7 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <actor name='person_1'>
+      <pose>0 0 0.85 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.5 0.8 1</ambient>
+            <diffuse>0.3 0.5 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <script>
+        <loop>true</loop>
+        <auto_start>true</auto_start>
+        <trajectory id='0' type='walking'>
+          <interpolate_x>true</interpolate_x>
+          <waypoint>
+            <time>0.0</time>
+            <pose>0 0 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>3.0</time>
+            <pose>3.5 0 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>5.0</time>
+            <pose>3.5 2 0.85 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>7.0</time>
+            <pose>4.5 2 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>9.0</time>
+            <pose>4.5 0 0.85 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>11.0</time>
+            <pose>8 0 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>13.0</time>
+            <pose>8 0 0.85 0 0 3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>18.0</time>
+            <pose>0 0 0.85 0 0 3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>19.0</time>
+            <pose>0 0 0.85 0 0 0</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+    <actor name='person_2'>
+      <pose>6 -2 0.85 0 0 1.57</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.3 0.5 1</ambient>
+            <diffuse>0.8 0.3 0.5 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <script>
+        <loop>true</loop>
+        <auto_start>true</auto_start>
+        <trajectory id='0' type='walking'>
+          <interpolate_x>true</interpolate_x>
+          <waypoint>
+            <time>0.0</time>
+            <pose>6 -2 0.85 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>4.0</time>
+            <pose>6 2 0.85 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>6.0</time>
+            <pose>6 2 0.85 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>10.0</time>
+            <pose>6 -2 0.85 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>11.0</time>
+            <pose>6 -2 0.85 0 0 1.57</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+    <actor name='person_3'>
+      <pose>-4 3 0.85 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.8 0.5 1</ambient>
+            <diffuse>0.2 0.8 0.5 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <script>
+        <loop>true</loop>
+        <auto_start>true</auto_start>
+        <trajectory id='0' type='walking'>
+          <interpolate_x>true</interpolate_x>
+          <waypoint>
+            <time>0.0</time>
+            <pose>-4 3 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>4.0</time>
+            <pose>-1 3 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>6.0</time>
+            <pose>-1 6 0.85 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>10.0</time>
+            <pose>-4 6 0.85 0 0 3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>14.0</time>
+            <pose>-4 3 0.85 0 0 3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>15.0</time>
+            <pose>-4 3 0.85 0 0 0</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+    <actor name='person_4'>
+      <pose>-6 -5 0.85 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.6 0.2 1</ambient>
+            <diffuse>0.9 0.6 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <script>
+        <loop>true</loop>
+        <auto_start>true</auto_start>
+        <trajectory id='0' type='walking'>
+          <interpolate_x>true</interpolate_x>
+          <waypoint>
+            <time>0.0</time>
+            <pose>-6 -5 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>5.0</time>
+            <pose>0 -5 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>7.0</time>
+            <pose>0 -5 0.85 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>10.0</time>
+            <pose>0 -2 0.85 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>12.0</time>
+            <pose>0 -2 0.85 0 0 -3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>17.0</time>
+            <pose>-6 -2 0.85 0 0 -3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>19.0</time>
+            <pose>-6 -2 0.85 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>22.0</time>
+            <pose>-6 -5 0.85 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>23.0</time>
+            <pose>-6 -5 0.85 0 0 0</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+    <actor name='person_5'>
+      <pose>9 4 0.85 0 0 -1.57</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.2 0.9 1</ambient>
+            <diffuse>0.7 0.2 0.9 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <script>
+        <loop>true</loop>
+        <auto_start>true</auto_start>
+        <trajectory id='0' type='walking'>
+          <interpolate_x>true</interpolate_x>
+          <waypoint>
+            <time>0.0</time>
+            <pose>9 4 0.85 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>5.0</time>
+            <pose>9 -3 0.85 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>7.0</time>
+            <pose>9 -3 0.85 0 0 3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>11.0</time>
+            <pose>5 -3 0.85 0 0 3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>13.0</time>
+            <pose>5 -3 0.85 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>17.0</time>
+            <pose>5 4 0.85 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>19.0</time>
+            <pose>5 4 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>23.0</time>
+            <pose>9 4 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>24.0</time>
+            <pose>9 4 0.85 0 0 -1.57</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+    <actor name='person_6'>
+      <pose>2 7 0.85 0 0 -1.57</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.4 0.4 1.7</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.2 1</ambient>
+            <diffuse>0.9 0.9 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <script>
+        <loop>true</loop>
+        <auto_start>true</auto_start>
+        <trajectory id='0' type='walking'>
+          <interpolate_x>true</interpolate_x>
+          <waypoint>
+            <time>0.0</time>
+            <pose>2 7 0.85 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>3.0</time>
+            <pose>2 4 0.85 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>5.0</time>
+            <pose>2 4 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>8.0</time>
+            <pose>5 4 0.85 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>10.0</time>
+            <pose>5 4 0.85 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>13.0</time>
+            <pose>5 7 0.85 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>15.0</time>
+            <pose>5 7 0.85 0 0 3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>18.0</time>
+            <pose>2 7 0.85 0 0 3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>19.0</time>
+            <pose>2 7 0.85 0 0 -1.57</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+  </world>
+</sdf>

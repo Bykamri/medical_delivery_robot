@@ -17,7 +17,10 @@ def generate_launch_description():
     robot_urdf = robot_description_config.toxml()
 
     world_file = os.path.join(share_dir, 'worlds', 'hospital_static_human.world')
+    slam_params_file = os.path.join(share_dir, 'config', 'slam_params.yaml')
+    rviz_config_file = os.path.join(share_dir, 'config', 'slam.rviz')
 
+    # Robot State Publisher
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -28,6 +31,7 @@ def generate_launch_description():
         ]
     )
 
+    # Joint State Publisher
     joint_state_publisher_node = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
@@ -38,6 +42,7 @@ def generate_launch_description():
         ]
     )
 
+    # Gazebo Server
     gazebo_server = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
@@ -52,6 +57,7 @@ def generate_launch_description():
         }.items()
     )
 
+    # Gazebo Client
     gazebo_client = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
@@ -62,6 +68,7 @@ def generate_launch_description():
         ])
     )
 
+    # Spawn Robot Entity
     urdf_spawn_node = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
@@ -71,19 +78,53 @@ def generate_launch_description():
             '-x', '1.0',
             '-y', '16.0',
             '-z', '0.1',
-            "-Y", '-1.575'
+            '-Y', '-1.575'
         ],
         output='screen'
     )
 
+    # SLAM Toolbox Node
+    slam_toolbox_node = Node(
+        package='slam_toolbox',
+        executable='async_slam_toolbox_node',
+        name='slam_toolbox',
+        output='screen',
+        parameters=[
+            slam_params_file,
+            {'use_sim_time': True}
+        ]
+    )
+
+    # RViz for SLAM Visualization
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2_slam',
+        arguments=['-d', rviz_config_file],
+        parameters=[{'use_sim_time': True}],
+        output='screen'
+    )
+
+    # Robot Move Node (uncomment if needed)
     robot_move_node = Node(
-         package='medical_delivery_robot',
-            executable='robot_move',
-            name='robot_move_node',
-            output='screen',
-            parameters=[{
-                'use_sim_time': True
-            }]
+        package='medical_delivery_robot',
+        executable='robot_move',
+        name='robot_move_node',
+        output='screen',
+        parameters=[{
+            'use_sim_time': True
+        }]
+    )
+
+    # Robot Move Enhanced Node (improved obstacle avoidance with rotation)
+    robot_move_enhanced_node = Node(
+        package='medical_delivery_robot',
+        executable='robot_move_enhanced',
+        name='robot_move_enhanced_node',
+        output='screen',
+        parameters=[{
+            'use_sim_time': True
+        }]
     )
 
     return LaunchDescription([
@@ -92,5 +133,7 @@ def generate_launch_description():
         gazebo_server,
         gazebo_client,
         urdf_spawn_node,
-        # robot_move_node
+        slam_toolbox_node,
+        rviz_node,
+        # robot_move_enhanced_node  # Using enhanced version with better rotation logic
     ])

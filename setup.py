@@ -33,6 +33,8 @@ setup(
     entry_points={
         'console_scripts': [
             'robot_move = medical_delivery_robot.robot_move:main',
+            'robot_move_enhanced = medical_delivery_robot.robot_move_enhanced:main',
+            'teleop_keyboard = medical_delivery_robot.teleop_keyboard:main',
         ],
     },
 )

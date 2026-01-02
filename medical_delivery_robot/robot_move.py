@@ -15,7 +15,7 @@ class MoveForward(Node):
         
         self.scan_sub = self.create_subscription(
             LaserScan,
-            '/gazebo_ros_laser_controller/out',
+            '/scan',
             self.scan_callback,
             10
         )
